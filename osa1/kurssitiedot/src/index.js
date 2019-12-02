@@ -3,39 +3,28 @@ import ReactDOM from 'react-dom'
 
 const App = () => {
     const course = 'Half Stack application development'
-    /*
-    const part1 = 'Fundamentals of React'
-    const exercises1 = 10
-    const part2 = 'Using props to pass data'
-    const exercises2 = 7
-    const part3 = 'State of a component'
-    const exercises3 = 14
-    */
-    //const num = [1,2,3];
-    //const numParts = num.map(n => '{'+n+'}');
-
-    const part1 = {
-        name: 'Fundamentals of React',
-        exercises: 10
-    }
-    const part2 = {
-        name: 'Using props to pass data',
-        exercises: 7
-    }
-    const part3 = {
-        name: 'State of a component',
-        exercises: 14
-    }
-// sfdsfd
+    const parts = [
+        {
+            name: 'Fundamentals of React',
+            exercises: 10
+        },
+        {
+            name: 'Using props to pass data',
+            exercises: 7
+        },
+        {
+            name: 'State of a component',
+            exercises: 14
+        }
+    ]   
     return (
         <div>
             <Header course={course} /> 
-            <Content part1={part1} part2={part2} part3={part3}/>
-            <Total part1={part1} part2={part2} part3={part3}/>
-            
-        </div>
-        
+            <Content parts={parts}/>
+            <Total parts={parts}/>            
+        </div>        
     )
+    
 
 }
 
@@ -52,29 +41,33 @@ const Header = (props) => {
 const Content = (props) => {    
     return(
         <div>
-            <p>
-                {props.part1.name} {props.part1.exercises}
-            </p>
-            <p>
-                {props.part2.name} {props.part2.exercises}
-            </p>
-            <p>
-                {props.part3.name} {props.part3.exercises}
-            </p>
-
+            <Part parts={props.parts}/>
         </div>
     )
 }
 
 const Total = (props) => {
-    //const part1Name={props.part1.name}
     return(
         <div>
             <p>
-                Number of exercises {props.part1.exercises + props.part2.exercises + props.part3.exercises}
-                
+                Number of exercises {props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises}
             </p>
         </div>        
+    )
+}
+const Part = (props) => {
+    return(
+        <div>
+            <p>
+                {props.parts[0].name} {props.parts[0].exercises}
+            </p>
+            <p>
+                {props.parts[1].name} {props.parts[1].exercises}
+            </p>
+            <p>
+                {props.parts[2].name} {props.parts[2].exercises}
+            </p>
+        </div>
     )
 }
 /*
@@ -102,6 +95,7 @@ const Part = (props) => {
                 exercises1={exercises1} exercises2={exercises2} exercises3={exercises3}
             />
 
+            Number of exercises {props.part1.exercises + props.part2.exercises + props.part3.exercises}
 
             <Part part1={props.part1}/>
             <Part part2={props.part2}/>
